@@ -1,0 +1,373 @@
+/* 🏴‍☠️ NAKAMAS CREW - Estilos Principales ONE PIECE */
+
+/* Importar fuentes épicas */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Variables CSS - Paleta ONE PIECE */
+:root {
+  /* Colores Primarios */
+  --luffy-red: #FF1E1E;
+  --grand-line-blue: #0A2463;
+  --one-piece-gold: #FFD700;
+  --island-green: #00C896;
+  
+  /* Colores Secundarios */
+  --kaido-purple: #6A0572;
+  --merry-orange: #F9A826;
+  --skypiea-blue: #1E90FF;
+  
+  /* Neutros */
+  --marineford-night: #1A1A2E;
+  --pirate-white: #FFFFFF;
+  --shadow-black: #000000;
+  
+  /* Gradientes */
+  --sunset-gradient: linear-gradient(135deg, var(--luffy-red) 0%, var(--merry-orange) 50%, var(--one-piece-gold) 100%);
+  --ocean-gradient: linear-gradient(135deg, var(--grand-line-blue) 0%, var(--skypiea-blue) 100%);
+  --treasure-gradient: linear-gradient(135deg, var(--one-piece-gold) 0%, var(--island-green) 100%);
+  
+  /* Sombras */
+  --epic-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  --glow-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  --luffy-glow: 0 0 30px rgba(255, 30, 30, 0.6);
+  
+  /* Tipografía */
+  --font-epic: 'Bebas Neue', cursive;
+  --font-body: 'Poppins', sans-serif;
+}
+
+/* Reset y configuración base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--marineford-night);
+  color: var(--pirate-white);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Configuración de la app principal */
+.nakamas-app {
+  min-height: 100vh;
+  position: relative;
+  background: var(--marineford-night);
+}
+
+/* Tipografía épica */
+.epic-title {
+  font-family: var(--font-epic);
+  font-size: clamp(2rem, 8vw, 6rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: 3px 3px 0px var(--shadow-black), 
+               0 0 30px var(--one-piece-gold);
+  background: var(--sunset-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: epicGlow 3s ease-in-out infinite alternate;
+}
+
+.pirate-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-weight: 600;
+  color: var(--island-green);
+  text-shadow: 2px 2px 4px var(--shadow-black);
+  margin-bottom: 1rem;
+}
+
+/* Botones épicos */
+.nakama-button {
+  position: relative;
+  padding: 1rem 2rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: none;
+  border-radius: 50px;
+  background: var(--sunset-gradient);
+  color: var(--pirate-white);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--epic-shadow);
+  overflow: hidden;
+}
+
+.nakama-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.nakama-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: var(--luffy-glow), var(--epic-shadow);
+  animation: buttonPulse 0.6s ease-in-out;
+}
+
+.nakama-button:hover::before {
+  left: 100%;
+}
+
+.nakama-button:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Botón secundario */
+.nakama-button-secondary {
+  background: var(--ocean-gradient);
+  border: 2px solid var(--skypiea-blue);
+}
+
+.nakama-button-secondary:hover {
+  box-shadow: 0 0 30px rgba(30, 144, 255, 0.6), var(--epic-shadow);
+}
+
+/* Cards de isla */
+.island-card {
+  position: relative;
+  background: rgba(26, 26, 46, 0.9);
+  border: 2px solid var(--grand-line-blue);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.island-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--treasure-gradient);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.island-card:hover {
+  transform: translateY(-10px) rotateY(5deg);
+  box-shadow: var(--glow-shadow);
+  border-color: var(--one-piece-gold);
+}
+
+.island-card:hover::before {
+  opacity: 0.1;
+}
+
+/* Efectos de partículas y animaciones */
+@keyframes epicGlow {
+  0% { text-shadow: 3px 3px 0px var(--shadow-black), 0 0 30px var(--one-piece-gold); }
+  100% { text-shadow: 3px 3px 0px var(--shadow-black), 0 0 50px var(--luffy-red); }
+}
+
+@keyframes buttonPulse {
+  0% { box-shadow: var(--epic-shadow); }
+  50% { box-shadow: var(--luffy-glow), 0 0 40px rgba(255, 30, 30, 0.8); }
+  100% { box-shadow: var(--luffy-glow), var(--epic-shadow); }
+}
+
+@keyframes floatAnimation {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes coinFall {
+  0% { 
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  100% { 
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Elementos flotantes */
+.floating-element {
+  animation: floatAnimation 3s ease-in-out infinite;
+}
+
+/* Monedas que caen */
+.coin-animation {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  background: var(--one-piece-gold);
+  border-radius: 50%;
+  z-index: 1000;
+  animation: coinFall 2s ease-in forwards;
+  box-shadow: 0 0 10px var(--one-piece-gold);
+}
+
+/* Notificaciones estilo pirata */
+.nakama-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(26, 26, 46, 0.95);
+  border: 2px solid var(--one-piece-gold);
+  border-radius: 15px;
+  padding: 1rem 1.5rem;
+  color: var(--pirate-white);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--epic-shadow);
+  z-index: 1001;
+  animation: slideInRight 0.5s ease-out;
+}
+
+.nakama-notification.success {
+  border-color: var(--island-green);
+  box-shadow: 0 0 20px rgba(0, 200, 150, 0.3);
+}
+
+.nakama-notification.reward {
+  border-color: var(--one-piece-gold);
+  box-shadow: var(--glow-shadow);
+  animation: slideInRight 0.5s ease-out, rewardPulse 1s ease-in-out 0.5s;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes rewardPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Barra de progreso estilo ONE PIECE */
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: rgba(26, 26, 46, 0.5);
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--treasure-gradient);
+  border-radius: 5px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: progressShine 2s ease-in-out infinite;
+}
+
+@keyframes progressShine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Efectos de scroll suave */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nakama-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .island-card {
+    padding: 1.5rem;
+  }
+  
+  .nakama-notification {
+    right: 10px;
+    left: 10px;
+    top: 10px;
+  }
+}
+
+/* Utilidades */
+.text-gradient {
+  background: var(--sunset-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glow-effect {
+  box-shadow: var(--glow-shadow);
+}
+
+.epic-shadow {
+  box-shadow: var(--epic-shadow);
+}
+
+/* Loader estilo barco navegando */
+.nakama-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: var(--marineford-night);
+}
+
+.ship-loader {
+  width: 60px;
+  height: 60px;
+  border: 3px solid var(--grand-line-blue);
+  border-top: 3px solid var(--one-piece-gold);
+  border-radius: 50%;
+  animation: shipSpin 1s linear infinite;
+}
+
+@keyframes shipSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Efectos de hover para elementos interactivos */
+.interactive-element {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.interactive-element:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
